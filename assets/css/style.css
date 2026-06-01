@@ -1,0 +1,132 @@
+/* Sami Islam - Custom Premium Stylesheet */
+
+/* Custom CSS Variables for Theme Flexibility */
+:root {
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base body transitions for smooth dark/light theme switching */
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Premium Frosted Glassmorphism Styles */
+.glassmorphism {
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition-smooth);
+}
+
+.light .glassmorphism {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Bento Grid Cards & Project Cards Micro-interactions */
+.bento-card {
+    transition: var(--transition-smooth);
+}
+
+.bento-card:hover {
+    transform: translateY(-6px) scale(1.015);
+    box-shadow: 0 22px 30px -5px rgba(99, 102, 241, 0.15), 0 12px 15px -5px rgba(99, 102, 241, 0.08);
+}
+
+.light .bento-card:hover {
+    box-shadow: 0 22px 30px -5px rgba(99, 102, 241, 0.08), 0 12px 15px -5px rgba(99, 102, 241, 0.04);
+}
+
+/* Premium Custom Scrollbars */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+
+.light ::-webkit-scrollbar-track {
+    background: #f8fafc;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.light ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6366f1;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+/* Custom Grid Decorative Background Patterns */
+.bg-grid-pattern {
+    background-image: radial-gradient(rgba(99, 102, 241, 0.15) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.light .bg-grid-pattern {
+    background-image: radial-gradient(rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+}
+
+/* Modern Hover Scales */
+.hover-scale {
+    transition: var(--transition-smooth);
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+.hover-scale:active {
+    transform: scale(0.95);
+}
+
+/* Floating badge animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 2s;
+}
+
+/* Glow effects for premium look */
+.glow-effect {
+    position: relative;
+}
+
+.glow-effect::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, #6366f1, #a855f7, #ec4899);
+    border-radius: inherit;
+    z-index: -1;
+    filter: blur(15px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.glow-effect:hover::after {
+    opacity: 0.35;
+}
