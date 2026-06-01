@@ -12,18 +12,18 @@ body {
 
 /* Frosted Glassmorphism with Premium Gradient Borders */
 .glassmorphism {
-    background: rgba(9, 9, 11, 0.7);
+    background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.04);
     transition: var(--transition-smooth);
 }
 
-.light .glassmorphism {
-    background: rgba(255, 255, 255, 0.75);
+.dark .glassmorphism {
+    background: rgba(9, 9, 11, 0.75);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(9, 9, 11, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* Bento Grid Cards & Project Cards Micro-interactions */
@@ -37,11 +37,15 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(99, 102, 241, 0.08), transparent 40%);
+    background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(99, 102, 241, 0.05), transparent 40%);
     z-index: 1;
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.5s ease;
+}
+
+.dark .bento-card::before {
+    background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(99, 102, 241, 0.08), transparent 40%);
 }
 
 .bento-card:hover::before {
@@ -50,13 +54,13 @@ body {
 
 .bento-card:hover {
     transform: translateY(-6px) scale(1.005);
-    border-color: rgba(99, 102, 241, 0.25);
-    box-shadow: 0 25px 35px -5px rgba(99, 102, 241, 0.08), 0 12px 18px -5px rgba(99, 102, 241, 0.04);
+    border-color: rgba(99, 102, 241, 0.2);
+    box-shadow: 0 25px 35px -5px rgba(99, 102, 241, 0.05), 0 12px 18px -5px rgba(99, 102, 241, 0.02);
 }
 
-.light .bento-card:hover {
-    border-color: rgba(99, 102, 241, 0.15);
-    box-shadow: 0 25px 35px -5px rgba(99, 102, 241, 0.05), 0 12px 18px -5px rgba(99, 102, 241, 0.02);
+.dark .bento-card:hover {
+    border-color: rgba(99, 102, 241, 0.25);
+    box-shadow: 0 25px 35px -5px rgba(99, 102, 241, 0.08), 0 12px 18px -5px rgba(99, 102, 241, 0.04);
 }
 
 /* Premium Custom Scrollbars */
@@ -65,20 +69,20 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: #09090b;
-}
-
-.light ::-webkit-scrollbar-track {
     background: #f4f4f5;
 }
 
+.dark ::-webkit-scrollbar-track {
+    background: #09090b;
+}
+
 ::-webkit-scrollbar-thumb {
-    background: #27272a;
+    background: #cbd5e1;
     border-radius: 9999px;
 }
 
-.light ::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
+.dark ::-webkit-scrollbar-thumb {
+    background: #27272a;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -87,12 +91,12 @@ body {
 
 /* Custom Grid Decorative Background Patterns */
 .bg-grid-pattern {
-    background-image: radial-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px);
     background-size: 24px 24px;
 }
 
-.light .bg-grid-pattern {
-    background-image: radial-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+.dark .bg-grid-pattern {
+    background-image: radial-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px);
 }
 
 /* Interactive Card Tabs & Buttons */
@@ -181,4 +185,16 @@ body {
     margin: 0;
     border: none;
     overflow: hidden;
+}
+
+/* Custom terminal console text scroll helper */
+.terminal-scroll::-webkit-scrollbar {
+    width: 4px;
+}
+.terminal-scroll::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.2);
+    border-radius: 4px;
+}
+.terminal-scroll::-webkit-scrollbar-track {
+    background: transparent;
 }

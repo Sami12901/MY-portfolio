@@ -103,12 +103,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Remove active states
                 filterTabs.forEach(t => {
                     t.classList.remove('bg-indigo-600', 'text-white', 'shadow-indigo-600/20');
-                    t.classList.add('text-slate-400', 'hover:text-slate-200');
+                    t.classList.add('text-slate-500', 'hover:text-slate-800', 'dark:text-slate-400', 'dark:hover:text-slate-200');
                 });
                 
                 // Add active state to clicked tab
                 tab.classList.add('bg-indigo-600', 'text-white', 'shadow-indigo-600/20');
-                tab.classList.remove('text-slate-400', 'hover:text-slate-200');
+                tab.classList.remove('text-slate-500', 'hover:text-slate-800', 'dark:text-slate-400', 'dark:hover:text-slate-200');
 
                 const filterVal = tab.getAttribute('data-filter');
 
@@ -175,11 +175,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (window.scrollY > 40) {
                 header.classList.add('py-2');
                 header.querySelector('nav').classList.remove('rounded-2xl', 'px-6');
-                header.querySelector('nav').classList.add('rounded-none', 'px-8', 'border-b', 'border-slate-900/50', 'dark:border-slate-900/50', 'light:border-slate-200/50');
+                header.querySelector('nav').classList.add('rounded-none', 'px-8', 'border-b', 'border-slate-200/50', 'dark:border-slate-900/50');
             } else {
                 header.classList.remove('py-2');
                 header.querySelector('nav').classList.add('rounded-2xl', 'px-6');
-                header.querySelector('nav').classList.remove('rounded-none', 'px-8', 'border-b', 'border-slate-900/50', 'dark:border-slate-900/50', 'light:border-slate-200/50');
+                header.querySelector('nav').classList.remove('rounded-none', 'px-8', 'border-b', 'border-slate-200/50', 'dark:border-slate-900/50');
             }
         });
     }
@@ -207,7 +207,71 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 8. Secure Contact Form with Premium Toast Alerts
+    // 8. Unique Interactive Hacker Terminal Logic
+    // ----------------------------------------------------
+    const termBody = document.getElementById('terminal-body');
+    const termBtns = document.querySelectorAll('.terminal-btn');
+
+    if (termBody && termBtns.length > 0) {
+        termBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const cmd = btn.getAttribute('data-cmd');
+                
+                // Print user command
+                const userLine = document.createElement('div');
+                userLine.className = 'text-indigo-600 dark:text-indigo-400 font-bold mt-1';
+                userLine.textContent = `$ sami --${cmd}`;
+                if (cmd === 'clear') userLine.textContent = '$ clear';
+                termBody.appendChild(userLine);
+
+                // Command responses
+                const respLine = document.createElement('div');
+                respLine.className = 'text-slate-700 dark:text-slate-300 pl-2 border-l border-slate-300 dark:border-slate-800 text-[11px]';
+                
+                if (cmd === 'clear') {
+                    termBody.innerHTML = `<div>$ cat welcome.txt</div><div class="text-slate-500 dark:text-slate-400">Terminal console logs cleared. Welcome back!</div>`;
+                    return;
+                } else if (cmd === 'about') {
+                    respLine.textContent = "Md Sami Islam: High-performance Frontend & Mobile developer based in Chittagong, Bangladesh. Adaptable, fast self-learner.";
+                } else if (cmd === 'skills') {
+                    respLine.textContent = "React, Tailwind CSS, Javascript, Node.js, MongoDB, Kotlin, Android Studio & dynamic AI implementations.";
+                } else if (cmd === 'focus') {
+                    respLine.textContent = "OmniCore ecosystem: a local-first multi-module Kotlin project designed for top-tier mobile modularity.";
+                }
+                
+                termBody.appendChild(respLine);
+                
+                // Auto scroll to bottom smoothly
+                termBody.scrollTo({
+                    top: termBody.scrollHeight,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    }
+
+    // ----------------------------------------------------
+    // 9. Unique Chittagong Dynamic Clock (Developer Status)
+    // ----------------------------------------------------
+    const clockElement = document.getElementById('local-clock');
+    if (clockElement) {
+        const updateClock = () => {
+            const options = {
+                timeZone: 'Asia/Dhaka',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            };
+            const timeFormatter = new Intl.DateTimeFormat('en-US', options);
+            clockElement.textContent = timeFormatter.format(new Date());
+        };
+        updateClock();
+        setInterval(updateClock, 1000);
+    }
+
+    // ----------------------------------------------------
+    // 10. Secure Contact Form with Premium Toast Alerts
     // ----------------------------------------------------
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
@@ -260,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="w-8 h-8 rounded-lg bg-green-500/10 text-green-400 flex items-center justify-center">
                     <i class="fa-solid fa-circle-check"></i>
                 </div>
-                <div class="text-sm font-semibold text-slate-200 dark:text-slate-200 light:text-slate-800">${message}</div>
+                <div class="text-sm font-semibold text-slate-800 dark:text-slate-200">${message}</div>
             `;
         } else {
             toast.classList.add('border-red-500/30');
@@ -268,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="w-8 h-8 rounded-lg bg-red-500/10 text-red-400 flex items-center justify-center">
                     <i class="fa-solid fa-triangle-exclamation"></i>
                 </div>
-                <div class="text-sm font-semibold text-slate-200 dark:text-slate-200 light:text-slate-800">${message}</div>
+                <div class="text-sm font-semibold text-slate-800 dark:text-slate-200">${message}</div>
             `;
         }
 
