@@ -1,104 +1,117 @@
-/* Sami Islam - Custom Premium Stylesheet */
+/* Sami Islam - Premium Professional Portfolio CSS */
 
-/* Custom CSS Variables for Theme Flexibility */
 :root {
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-snappy: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Base body transitions for smooth dark/light theme switching */
+/* Base body transitions for seamless dark/light theme switching */
 body {
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Premium Frosted Glassmorphism Styles */
+/* Frosted Glassmorphism with Premium Gradient Borders */
 .glassmorphism {
-    background: rgba(15, 23, 42, 0.65);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(9, 9, 11, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.05);
     transition: var(--transition-smooth);
 }
 
 .light .glassmorphism {
     background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(9, 9, 11, 0.06);
 }
 
 /* Bento Grid Cards & Project Cards Micro-interactions */
 .bento-card {
     transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.bento-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(99, 102, 241, 0.08), transparent 40%);
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.bento-card:hover::before {
+    opacity: 1;
 }
 
 .bento-card:hover {
-    transform: translateY(-6px) scale(1.015);
-    box-shadow: 0 22px 30px -5px rgba(99, 102, 241, 0.15), 0 12px 15px -5px rgba(99, 102, 241, 0.08);
+    transform: translateY(-6px) scale(1.005);
+    border-color: rgba(99, 102, 241, 0.25);
+    box-shadow: 0 25px 35px -5px rgba(99, 102, 241, 0.08), 0 12px 18px -5px rgba(99, 102, 241, 0.04);
 }
 
 .light .bento-card:hover {
-    box-shadow: 0 22px 30px -5px rgba(99, 102, 241, 0.08), 0 12px 15px -5px rgba(99, 102, 241, 0.04);
+    border-color: rgba(99, 102, 241, 0.15);
+    box-shadow: 0 25px 35px -5px rgba(99, 102, 241, 0.05), 0 12px 18px -5px rgba(99, 102, 241, 0.02);
 }
 
 /* Premium Custom Scrollbars */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #0f172a;
+    background: #09090b;
 }
 
 .light ::-webkit-scrollbar-track {
-    background: #f8fafc;
+    background: #f4f4f5;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #334155;
+    background: #27272a;
     border-radius: 9999px;
-    border: 2px solid transparent;
-    background-clip: padding-box;
 }
 
 .light ::-webkit-scrollbar-thumb {
     background: #cbd5e1;
-    border: 2px solid transparent;
-    background-clip: padding-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #6366f1;
-    border: 2px solid transparent;
-    background-clip: padding-box;
+    background: #4f46e5;
 }
 
 /* Custom Grid Decorative Background Patterns */
 .bg-grid-pattern {
-    background-image: radial-gradient(rgba(99, 102, 241, 0.15) 1px, transparent 1px);
-    background-size: 20px 20px;
+    background-image: radial-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px);
+    background-size: 24px 24px;
 }
 
 .light .bg-grid-pattern {
-    background-image: radial-gradient(rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px);
 }
 
-/* Modern Hover Scales */
+/* Interactive Card Tabs & Buttons */
 .hover-scale {
-    transition: var(--transition-smooth);
+    transition: var(--transition-snappy);
 }
 
 .hover-scale:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .hover-scale:active {
-    transform: scale(0.95);
+    transform: scale(0.97);
 }
 
-/* Floating badge animations */
+/* Floating animation variants */
 @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(1deg); }
 }
 
 .animate-float {
@@ -107,26 +120,65 @@ body {
 
 .animate-float-delayed {
     animation: float 6s ease-in-out infinite;
-    animation-delay: 2s;
+    animation-delay: 2.5s;
 }
 
-/* Glow effects for premium look */
-.glow-effect {
+/* Typing cursor animation */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.cursor-blink::after {
+    content: '|';
+    animation: blink 0.8s infinite;
+    color: #6366f1;
+    font-weight: 400;
+}
+
+/* Premium border glow effect */
+.border-glow {
     position: relative;
+    border: 1px solid rgba(99, 102, 241, 0.1);
 }
 
-.glow-effect::after {
+.border-glow::after {
     content: '';
     position: absolute;
-    inset: 0;
-    background: linear-gradient(45deg, #6366f1, #a855f7, #ec4899);
-    border-radius: inherit;
+    inset: -1px;
+    background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899, #6366f1);
+    background-size: 400% 400%;
     z-index: -1;
-    filter: blur(15px);
+    border-radius: inherit;
     opacity: 0;
     transition: opacity 0.4s ease;
+    animation: gradientMove 8s linear infinite;
 }
 
-.glow-effect:hover::after {
-    opacity: 0.35;
+.border-glow:hover::after {
+    opacity: 0.15;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Project Card category filtering animation transitions */
+.project-card {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card.filtered-out {
+    transform: scale(0.95);
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+    overflow: hidden;
 }
