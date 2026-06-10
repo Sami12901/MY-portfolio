@@ -5,30 +5,20 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------
-    // 1. Anti-Spam Email & Phone Decryption (Security)
+    // 1. Anti-Spam Email Decryption (Security)
     // ----------------------------------------------------
     const secureData = {
         encEmail: "bWRzYW1paXNsYW0yMDA2QGdtYWlsLmNvbQ==", // mdsamiislam2006@gmail.com
-        encPhone: "MDE2MjUxMDAwMTM="                        // 01625100013
     };
 
     const decodeSec = (str) => atob(str);
     const email = decodeSec(secureData.encEmail);
-    const phone = decodeSec(secureData.encPhone);
 
     // Securely inject email address to DOM
     document.querySelectorAll('.sec-email').forEach(el => {
         el.textContent = email;
         if (el.tagName === 'A') {
             el.setAttribute('href', `mailto:${email}`);
-        }
-    });
-
-    // Securely inject phone number to DOM
-    document.querySelectorAll('.sec-phone').forEach(el => {
-        el.textContent = phone;
-        if (el.tagName === 'A') {
-            el.setAttribute('href', `tel:${phone}`);
         }
     });
 
@@ -307,9 +297,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Mock success display
-            showToast(`Thank you, ${name}! Your message was securely sent.`, 'success');
-            contactForm.reset();
+            // Send to FormSubmit
+            const submitUrl = "https://formsubmit.co/ajax/" + email;
+            
+            fetch(submitUrl, {
+                method: "POST",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: userEmail,
+                    _subject: subject,
+                    message: msg
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                showToast(`Thank you, ${name}! Your message was securely sent.`, 'success');
+                contactForm.reset();
+            })
+            .catch(error => {
+                showToast(`Sorry, there was an error sending your message.`, 'error');
+            });
         });
     }
 
