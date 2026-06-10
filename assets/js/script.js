@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else if (cmd === 'skills') {
                     respLine.textContent = "React, Tailwind CSS, Javascript, Node.js, MongoDB, Kotlin, Android Studio & dynamic AI implementations.";
                 } else if (cmd === 'focus') {
-                    respLine.textContent = "OmniCore ecosystem: a local-first multi-module Kotlin project designed for top-tier mobile modularity.";
+                    respLine.textContent = "ALL-IN-ONE-v1: currently building out the tools ecosystem (10% tools complete).";
                 }
                 
                 termBody.appendChild(respLine);
